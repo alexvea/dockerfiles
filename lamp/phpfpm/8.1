@@ -17,6 +17,3 @@ RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 #permet de lire les fichiers custom de la config .ini et php-fpm
 RUN echo ";ajouté via Dockerfile phpfpm" >> /usr/local/etc/php-fpm.conf
 RUN echo "include=/usr/local/etc/php-fpm.d/custom/*.conf" >> /usr/local/etc/php-fpm.conf
-
-RUN echo ";ajouté via Dockerfile phpfpm" >> "$PHP_INI_DIR/php.ini"
-RUN echo "include=/usr/local/etc/php/conf.d/custom/*.ini" >>  "$PHP_INI_DIR/php.ini"
