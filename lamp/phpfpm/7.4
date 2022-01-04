@@ -1,0 +1,20 @@
+
+FROM php:7.4-fpm
+
+#extension gd
+RUN apt-get update && apt-get install -y \
+        libfreetype6-dev \
+        libjpeg62-turbo-dev \
+        libpng-dev \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install -j$(nproc) gd
+#extension mysqli
+RUN docker-php-ext-install mysqli pdo pdo_mysql
+RUN docker-php-ext-enable mysqli
+
+# Use the default production configuration
+RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
+
+#permet de lire les fichiers custom de la config .ini et php-fpm
+RUN echo ";ajouté via Dockerfile phpfpm" >> /usr/local/etc/php-fpm.conf
+RUN echo "include=/usr/local/etc/php-fpm.d/custom/*.conf" >> /usr/local/etc/php-fpm.conf
