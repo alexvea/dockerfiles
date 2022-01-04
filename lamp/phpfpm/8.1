@@ -19,4 +19,4 @@ RUN echo ";ajouté via Dockerfile phpfpm" >> /usr/local/etc/php-fpm.conf
 RUN echo "include=/usr/local/etc/php-fpm.d/custom/*.conf" >> /usr/local/etc/php-fpm.conf
 
 RUN echo ";ajouté via Dockerfile phpfpm" >> "$PHP_INI_DIR/php.ini"
-RUN echo "include=/usr/local/etc/php/conf.d/custom/*.conf" >>  "$PHP_INI_DIR/php.in"i
+RUN echo "include=/usr/local/etc/php/conf.d/custom/*.ini" >>  "$PHP_INI_DIR/php.ini"
